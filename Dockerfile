@@ -1,8 +1,9 @@
 FROM agnohq/python:3.12 AS base
- 
+
 ENV PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 \
     PIP_NO_CACHE_DIR=1 PIP_DISABLE_PIP_VERSION_CHECK=1 \
     UV_CACHE_DIR=/tmp/uv-cache UV_HTTP_TIMEOUT=120
+
 
 ARG APP_USER=app
 ARG APP_UID=10001
@@ -32,4 +33,3 @@ RUN sed -i 's/\r$//' /app/scripts/entrypoint.sh \
 USER ${APP_USER}
 EXPOSE 8080
 ENTRYPOINT ["bash", "/app/scripts/entrypoint.sh"]
- 
